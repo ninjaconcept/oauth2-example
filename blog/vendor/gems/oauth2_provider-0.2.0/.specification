@@ -1,0 +1,99 @@
+--- !ruby/object:Gem::Specification 
+name: oauth2_provider
+version: !ruby/object:Gem::Version 
+  hash: 23
+  prerelease: false
+  segments: 
+  - 0
+  - 2
+  - 0
+  version: 0.2.0
+platform: ruby
+authors: 
+- ThoughtWorks, Inc.
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2010-08-31 00:00:00 +08:00
+default_executable: 
+dependencies: []
+
+description: A Rails plugin to OAuth v2.0 enable your rails application. This plugin implements v09 of the OAuth2 draft spec http://tools.ietf.org/html/draft-ietf-oauth-v2-09.
+email: ketan@thoughtworks.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- README.textile
+- MIT-LICENSE.txt
+files: 
+- app/controllers/oauth2/provider/oauth_authorize_controller.rb
+- app/controllers/oauth2/provider/oauth_clients_controller.rb
+- app/controllers/oauth2/provider/oauth_token_controller.rb
+- app/controllers/oauth2/provider/oauth_user_tokens_controller.rb
+- app/models/oauth2/provider/oauth_authorization.rb
+- app/models/oauth2/provider/oauth_client.rb
+- app/models/oauth2/provider/oauth_token.rb
+- app/views/oauth2/provider/layouts/oauth_clients.html.erb
+- app/views/oauth2/provider/oauth_authorize/index.html.erb
+- app/views/oauth2/provider/oauth_clients/edit.html.erb
+- app/views/oauth2/provider/oauth_clients/index.html.erb
+- app/views/oauth2/provider/oauth_clients/new.html.erb
+- app/views/oauth2/provider/oauth_clients/show.html.erb
+- app/views/oauth2/provider/oauth_user_tokens/index.html.erb
+- config/routes.rb
+- generators/oauth2_provider/oauth2_provider_generator.rb
+- generators/oauth2_provider/templates/config/initializers/oauth2_provider.rb
+- generators/oauth2_provider/templates/db/migrate/create_oauth_authorizations.rb
+- generators/oauth2_provider/templates/db/migrate/create_oauth_clients.rb
+- generators/oauth2_provider/templates/db/migrate/create_oauth_tokens.rb
+- init.rb
+- lib/oauth2/provider/a_r_datasource.rb
+- lib/oauth2/provider/application_controller_methods.rb
+- lib/oauth2/provider/clock.rb
+- lib/oauth2/provider/in_memory_datasource.rb
+- lib/oauth2/provider/model_base.rb
+- lib/oauth2_provider.rb
+- MIT-LICENSE.txt
+- oauth2_provider.gemspec
+- README.textile
+- tasks/gem.rake
+- CHANGELOG
+has_rdoc: true
+homepage: http://github.com/ThoughtWorksStudios/oauth2_provider
+licenses: []
+
+post_install_message: 
+rdoc_options: []
+
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.3.7
+signing_key: 
+specification_version: 3
+summary: A Rails plugin to OAuth v2.0 enable your rails application
+test_files: []
+

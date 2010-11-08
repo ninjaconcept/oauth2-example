@@ -1,0 +1,8 @@
+blog/log/*.log
+blog/tmp/**/*
+blog/tmp*
+blog/config/database.yml
+publisher/log/*.log
+publisher/tmp/**/*
+publisher/tmp*
+publisher/config/database.yml

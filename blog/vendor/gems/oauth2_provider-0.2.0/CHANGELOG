@@ -1,0 +1,390 @@
+[f15eb88 | Tue Aug 31 23:25:50 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Bumping up version number for a 0.2.0 release!
+
+[05c5534 | Wed Aug 25 17:40:04 UTC 2010] Janmejay Singh <singh.janmejay@gmail.com>
+
+  * plugin when loaded in jruby/rails app(initialized by jruby-rack servlet), in production mode, was failing to find files/load missing constants(even though files are present in path). Fixed the problem by eger loading necessary files.
+
+[79c14f0 | Mon Aug 23 18:24:17 UTC 2010] David Rice <david.rice@gmail.com>
+
+  * add ids and classes to HTML to allow for styling by host application; remove oauth client show view as it was redundant to the list view
+
+[0ff4cc7 | Tue Aug 10 21:23:00 UTC 2010] Janmejay Singh <singh.janmejay@gmail.com>
+
+  * allowed silencing 'using datasource...' message by an environment variable, message is shown unless ENV['LOAD_OAUTH_SILENTLY'] is set
+
+[c59ef9f | Tue Aug 10 20:43:53 UTC 2010] Janmejay Singh <singh.janmejay@gmail.com>
+
+  * added environment variables to make route prefixing possible
+
+[e051873 | Fri Aug 06 02:18:36 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * user_id_for_oauth_access_token is nil if the token passed using the 'Authorization' header has expired.
+
+[740104a | Fri Aug 06 01:19:28 UTC 2010] Janmejay Singh <singh.janmejay@gmail.com>
+
+  * refactored model_base to pick datasource using a method instead of @@datasource, this makes it easy for plugin users to override what datasource instance is used. jruby-rack initializes @app on first request(insteed of servlet initialization), so it is important to do this lazily
+
+[a3728a9 | Fri Aug 06 01:16:27 UTC 2010] Janmejay Singh <singh.janmejay@gmail.com>
+
+  * user level service approval now has forgery protection enabled + disabled forgery_protection for api request(/oauth/token)
+
+[2145cd2 | Tue Aug 03 18:15:15 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Fixed url munging issues because our model objects are not AR based. Duck typing!!
+
+[c6d43b3 | Mon Aug 02 17:37:14 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * KP/WPC -
+
+    * Autodiscover the datasource based on whether ActiveRecord is available.
+    * Default to using InMemoryDatasource if ActiveRecord is not available, and print a warning.
+
+[ddc56ca | Sat Jul 31 00:55:47 UTC 2010] wpc <alex.hal9000@gmail.com>
+
+  * Specify data type for column for ModelBase. (by default is string type)
+
+[9546cd7 | Fri Jul 30 23:22:43 UTC 2010] wpc <alex.hal9000@gmail.com>
+
+  * KP/WPC use eval instead of constantize for intiailze custom data source, because constantize dose not work on java class
+
+[c52a5b6 | Fri Jul 30 23:19:14 UTC 2010] wpc <alex.hal9000@gmail.com>
+
+  * KP/WPC refactoring for removing all find_all_* methods
+
+[136bca5 | Fri Jul 30 22:57:51 UTC 2010] wpc <alex.hal9000@gmail.com>
+
+  * KP/WPC - removed some find methods.
+
+[233b20c | Fri Jul 30 22:37:00 UTC 2010] wpc <alex.hal9000@gmail.com>
+
+  * KP/WPC - Add some tests for ModelBase. Removed some redundant tests from oauth_client_test which were really ModelBase tests.
+
+[5e43b90 | Fri Jul 30 21:05:40 UTC 2010] wpc <alex.hal9000@gmail.com>
+
+  * KP/WPC change expires_at type to integer, so that DataSource don't need to do Date type converting.
+
+[027ded7 | Fri Jul 30 00:41:36 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Renamed a class.
+
+[31903c2 | Fri Jul 30 00:05:24 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * KP/WPC - Added an example in memory datasource to store oauth DTO objects.
+
+[bd4f9db | Thu Jul 29 22:24:06 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * KP/WPC - Remove all dependencies on AR.
+
+[cf2b818 | Thu Jul 29 20:53:09 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * KP/WPC - [cleanup] refactored our classes into their own files.
+
+[1f8f120 | Thu Jul 29 20:46:36 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Remove empty file.
+
+[4072a40 | Thu Jul 29 19:16:32 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * KP/WPC - Remove dependency on AR.
+
+    Decouple the OauthClient from AR.
+    Rolled out our own AR 'clone' that delegates DB operations to a DTO behind the source.
+
+[20b81b6 | Sat Jul 24 00:30:26 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Bump up version number for release.
+
+[9ff5a1e | Sat Jul 24 00:27:04 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Add tasks to check license notices before creating the gem.
+
+[7b6ad1e | Fri Jul 23 20:43:55 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * A workaround for the "A copy of ApplicationController has been removed from the module tree but is still active!" error.
+
+    See:
+    * https://rails.lighthouseapp.com/projects/8994/tickets/2948
+    * https://rails.lighthouseapp.com/projects/8994/tickets/2873
+
+[961a5dd | Fri Jul 23 18:31:00 UTC 2010] David Rice <david.rice@gmail.com>
+
+  * fix development environment hack
+
+[2d4c7bf | Fri Jul 23 18:26:11 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Add Copyright notice and MIT License reference in all ruby scripts
+
+[155723e | Thu Jul 22 23:24:21 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Fix the generator to not die out on a missing db/migrate directory.
+
+[d04ea6b | Thu Jul 22 20:28:26 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Updated the gem task with the correct information.
+
+[a8cbece | Thu Jul 22 20:16:51 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Add MIT license, update readme with the new license text.
+
+[91fe9a7 | Thu Jul 22 17:40:17 UTC 2010] Sherry Jin <sjin@thoughtworks.com>
+
+  * updated Readme
+
+[659d8e9 | Wed Jul 21 00:30:42 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Add a task to generate a nice gem.
+
+[4ff4ce2 | Tue Jul 20 20:16:58 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Add a generator plugin that generates the right db migrations and initializer when executed.
+
+[4298f4c | Tue Jul 20 18:36:42 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * remove all hooks; host apps now required to supply initializer to configure plugin controller
+
+[45d1e73 | Mon Jul 19 21:39:35 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Explicitly set the controller class in the link, this is needed as a workaround for mingle because it seems to monkey patch link_to in order to check if the user has access to the particular resource.
+
+[1423124 | Mon Jul 19 20:35:03 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Fix the readme to add new callback api and a recent change in the name of the 'skip_authentication' method.
+
+[0e1fff1 | Mon Jul 19 20:31:55 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Fix broken HTML when rendering the table containing oauth tokens for a user.
+
+[050d930 | Mon Jul 19 20:31:30 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Ensure that the user_tokens controller uses the correct HTTP methods for its actions.
+
+[6a122da | Mon Jul 19 20:30:53 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Added callbacks to skip filters for the OAuth2 CRUD controllers that are setup by the host app.
+
+[70a9b8f | Fri Jul 16 22:13:51 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Added support for sending blocks to 'oauth_allowed' method that returns a boolean in addition to the :only and :except options.
+
+    This is similar to rails' before/after filters.
+
+[e5f1ce5 | Fri Jul 16 22:11:31 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Renamed the 'skip_authentication' method to 'skip_authentication_for_oauth' to reflect that this is used by oauth, and 'skip_authentication' is a bit confusing as to "why this is needed ?"
+
+[61e1a73 | Fri Jul 16 22:10:42 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Renamed the 'current_user_id' method to 'current_user_id_for_oauth' to reflect that this is used by oauth.
+
+[a2fe95e | Thu Jul 15 16:05:25 UTC 2010] David Rice <david.rice@gmail.com>
+
+  * fix plugin reload issue in dev env
+
+[17bcef3 | Thu Jul 15 00:06:20 UTC 2010] David Rice <david.rice@gmail.com>
+
+  * fix some issues with sample host app and message for authorization
+
+[6b1acac | Tue Jul 13 23:46:36 UTC 2010] Sherry Jin <sjin@thoughtworks.com>
+
+  * now there's a general hook for skipping auth on get_token action
+
+[646b57c | Tue Jul 13 23:18:02 UTC 2010] Sherry Jin <sjin@thoughtworks.com>
+
+  * README file
+
+[bb7f271 | Tue Jul 13 21:00:30 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * minors changes to readme
+
+[611bbd3 | Mon Jul 12 18:30:12 UTC 2010] Sherry Jin <sjin@thoughtworks.com>
+
+  * #20 - implement refresh-token grant type; for now refresh tokens do not expire
+
+[783c9be | Fri Jul 09 21:56:31 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * delete the authorization code premptively if the client_id and client_secret do not match.
+
+[902a7b7 | Fri Jul 09 21:24:40 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * split the oauth_token model into two. There is now an oauth_token and an oauth_authorization
+
+[7fb59bd | Fri Jul 09 20:23:31 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * add verification instructions to README
+
+[5b35a0a | Fri Jul 09 18:49:12 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Added a more detailed README file.
+
+[3f0ebe2 | Fri Jul 09 16:37:51 UTC 2010] David Rice <david.rice@gmail.com>
+
+  * remove obsolete secure_random implementation
+
+[ba4ccdd | Fri Jul 09 16:18:51 UTC 2010] David Rice <david.rice@gmail.com>
+
+  * remove now redundant foreign_key option for token <> client relationship
+
+[ef2c6e7 | Fri Jul 09 16:11:45 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * change from o_auth to oauth in all file and class names as it was annoying everyone
+
+[17aadda | Thu Jul 08 18:52:59 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * The controller was unable to identify oauth requests because it was looking at the params instead of the 'Authorization' header.
+
+    See:
+    * http://tools.ietf.org/html/draft-ietf-oauth-v2-09#section-5.1.1
+
+[152dfae | Thu Jul 08 01:15:38 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * #21 - added a screen that allows a logged in user to revoke oauth tokens
+
+[8a60621 | Thu Jul 08 00:35:22 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * #21 - added a screen that lists out tokens for the logged in user
+
+[a562d5c | Wed Jul 07 23:42:02 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * #15 - add fairly pathetic URL validation for client redirect_uri
+
+[7ea201d | Wed Jul 07 23:22:46 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * added tests for the oauth client controller CRUD
+
+[e2345c5 | Wed Jul 07 22:44:07 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * #15 try integrate provider with gadget rendering server, fix conditional routes, make oauth protected action look at header instead of query parameter
+
+[2303d17 | Wed Jul 07 21:52:06 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * #15 - remove oauth param helper
+
+[c9959bc | Wed Jul 07 21:44:12 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * #15 - the /oauth/token endpoint is POST only.
+
+[9e3ea87 | Wed Jul 07 21:28:00 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * #15 - only access authorize request via POST method
+
+[b185305 | Wed Jul 07 20:01:11 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Some rails convention over configuration yakshaving for moving our oauth_client CRUD behind a different url under a '/oauth' namespace.
+
+[03749ba | Wed Jul 07 00:40:10 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Add support for an OPTIONAL state param for the /authorize endpoint
+
+    See:
+    * http://tools.ietf.org/html/draft-ietf-oauth-v2-09#section-3
+
+[18676f8 | Tue Jul 06 23:45:44 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * renamed the association between oauth tokens and oauth clients
+
+[6fb7a91 | Tue Jul 06 23:39:24 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * #15 - fix some class loading issues; unfortunately we are no longer using hooks, but requiring code be written within the host app itself
+
+[af8e619 | Tue Jul 06 23:27:28 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * moved things into correct namespaces.
+
+[f5b7d9a | Tue Jul 06 22:06:10 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * moving a file
+
+[9b52a22 | Tue Jul 06 21:53:00 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * #15 - fix incorrect storage of oauth_options in controller classes
+
+[9142343 | Tue Jul 06 21:09:51 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * #15 - added hooks for allowing oauth access to application actions
+
+[21776d0 | Tue Jul 06 17:48:06 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * #15 - access tokens now have 90 days validity
+
+[8272aba | Fri Jul 02 02:07:42 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Added validations around /authorize?response_type=code.
+
+    Currently the only response_type allowed is 'code'.
+    
+    See:
+    * http://tools.ietf.org/html/draft-ietf-oauth-v2-09#section-3
+    * http://tools.ietf.org/html/draft-ietf-oauth-v2-09#section-3.2.1
+
+[21f0705 | Thu Jul 01 22:10:46 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Ensure that token expires in 1 hour after it is created.
+
+[1cba937 | Thu Jul 01 22:05:50 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * The /authorize action gives a token that is valid for 1 hour(default)
+
+    See:
+    * http://tools.ietf.org/html/draft-ietf-oauth-v2-09#section-3.1
+
+[d7f0402 | Thu Jul 01 20:06:24 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * #17 - /token?grant_type=authorization-code
+
+    Disallow posting same authorization code twice.
+    
+    See:
+    
+    * http://tools.ietf.org/html/draft-ietf-oauth-v2-09#section-3.1
+    * http://tools.ietf.org/html/draft-ietf-oauth-v2-09#section-4.3.1
+
+[85d2374 | Thu Jul 01 07:12:23 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Ensure that the 'expires_in' and 'refresh_token' are rendered as part of /authorize?grant_type=authorization_code
+
+[2f84103 | Thu Jul 01 05:45:44 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * Take control of time, we need to test the token expiry.
+
+[110c309 | Wed Jun 30 22:50:14 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * added a happy path for getting access tokens. need to work on edge cases
+
+[15846ec | Wed Jun 30 21:45:32 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * redirect_uri is now a required param for requesting authorization code
+
+[56836ba | Wed Jun 30 20:49:57 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * moved a file into the vendor/plugin
+
+[411f559 | Wed Jun 30 19:20:20 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * #15 - we can now provide an authorization code; validations should be complete too.
+
+[89202cf | Wed Jun 30 01:10:10 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * added some controller tests for the authorization controller
+
+[10ad5c5 | Tue Jun 29 22:14:25 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * fixed an error caused because of the user logging out
+
+[635cfc8 | Tue Jun 29 22:09:36 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * adding scaffold for creating users and managing user sessions.
+
+[2ab3793 | Tue Jun 29 21:42:16 UTC 2010] Ketan Padegaonkar <KetanPadegaonkar@gmail.com>
+
+  * adding some gems to enable user auth
+
+[5d45d38 | Tue Jun 29 21:21:10 UTC 2010] Sherry Jin <sjin@thoughtworks.com>
+
+  * KP/SJ #15 more setup
+
+[2c6ef15 | Tue Jun 29 20:49:06 UTC 2010] Sherry Jin <sjin@thoughtworks.com>
+
+  * KP/SJ #15 can keep track of authorized clients
+

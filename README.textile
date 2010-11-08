@@ -1,3 +1,114 @@
-h1. oauth2 example
+h1. oauth2-example
 
+This repo includes the demo use of oauth2 in rails, for both provider and client app.
+
+h2. 1. Background
+
+h3. 1.1 The OAuth 2.0 protocol
+
+As described in the spec:
+
+bq. OAuth provides a method for clients to access a protected resource on behalf of a resource owner.  Before a client can access a protected resource, it must first obtain authorization from the resource owner, then exchange the access grant for an access token (representing the grant's scope, duration, and other attributes).  The client accesses the protected resource by presenting the access token to the resource server.
+
+The most recent version is "v0.10":http://tools.ietf.org/html/draft-ietf-oauth-v2-10 , and most of the gems/plugins available is based on the "v0.9 version":http://tools.ietf.org/html/draft-ietf-oauth-v2-09 of the spec.
+
+And a abstract protocol flow is illustrated here: "http://tools.ietf.org/html/draft-ietf-oauth-v2-09#section-1.3":http://tools.ietf.org/html/draft-ietf-oauth-v2-09#section-1.3
+
+
+h3. 1.2 Gems/Plugins availabe
+
+Because the oauth2 protocol is pretty new itself, the gems/plugins are under development, and some of them are in alpha state and then not maintained anymore.
+
+Below is a list of gems/plugins implemented oauth2.
+
+h4. provider:
+
+oauth2_provider:  "https://github.com/ThoughtWorksStudios/oauth2_provider":https://github.com/ThoughtWorksStudios/oauth2_provider
+oauth2-ruby: "https://github.com/aflatter/oauth2-ruby":https://github.com/aflatter/oauth2-ruby
+rack-oauth2-server: "https://github.com/flowtown/rack-oauth2-server":https://github.com/flowtown/rack-oauth2-server
+
+h4. client:
+
+OAuth2                    "https://github.com/intridea/oauth2":https://github.com/intridea/oauth2
+devise_oauth2_facebook    "https://github.com/mooktakim/devise_oauth2_facebook":https://github.com/intridea/oauth2
+authlogic_oauth2          "https://github.com/andyhite/authlogic_oauth2":https://github.com/intridea/oauth2
+
+considering the stability and activity, we choose the "oauth2_provider" plugin for provider app and "oauth2" for client app.
+
+Note: both plugins and gems are modified to compatible with the spec and work with each other.
+
+h2. 2. Setting up sample apps
+
+There are 2 sample apps in the repo.
+
+h3. 2.1 Blog, the provider app
+
+The blog app is a provider app, it provide the oauth2 authentication, you can register a client app and authenticate against it.
+It also provide a UI to checkout registered clients.
+
+here are the steps for setting up the provider app
+
+# start the application with ./script/server
+# register a user with admin/123456
+# create several articles
+# click the "Clients" link on the top right
+# create a client app and name it "publisher", with Redirect uri: "http://localhost:4000/oauth/callback"
+# when done, copy the Client id and Client secret for later use.
+
+h3. 2.2 Publisher, the client app
+
+The publisher app is a client app, you can config the oauth2 authentication information there, and get protected resources from the provider
+
+here are the steps for setting up the client app:
+
+# go to the app/controllers/oauth_controller.rb, and replace the client_id and client_secret with the pair you got in setting up provider app
+# start server with ./script/server -p 4000
+# click the "get articles!" link
+# when ask for login, login with you username/password on the Blog app
+# make sure check the checkbox and click submit when ask for permission.
+# then you should see the data returned from the provider app
+
+h2. 3. Setting up for new project
+
+normally you just set up new project as described in the above section, just remember use the gem/plugin nested in the sample app.
+below is the explanation of what have been changed in the gem/plugin and why.
+
+h3. 3.1 Provider setting up
+
+You can follow the provider setting up instructino here: "https://github.com/ThoughtWorksStudios/oauth2_provider":https://github.com/ThoughtWorksStudios/oauth2_provider
+
+and remember use the plugin nested in the sample provider app, if not you may get the following exception
+
+<pre><code>ArgumentError in Oauth2::provider::oauthauthorizeController#index
+A copy of ApplicationController has been removed from the module tree but is still active!
+</code></pre>
+
+
+
+h3. 3.2 Client setting up
+
+<pre><code>
+def access_token_url(params = {})
+  # according to http://tools.ietf.org/html/draft-ietf-oauth-v2-05#section-3.3.1
+  # it should be "/oauth/token" instead of "/oauth/access_token"
+  path = options[:access_token_url] || options[:access_token_path] || "/oauth/token"
+  # according to http://tools.ietf.org/html/draft-ietf-oauth-v2-09#section-4.1.1
+  # :grant_type is required and should be set to authorization-code
+  params.merge!({:grant_type => "authorization-code"})
+  
+  connection.build_url(path, params).to_s
+end
+</code></pre>
+
+<pre><code>
+def authorize_url(params = { :response_type => 'code' })
+  path = options[:authorize_url] || options[:authorize_path] || "/oauth/authorize"
+  # according to http://tools.ietf.org/html/draft-ietf-oauth-v2-09#section-3
+  # response_type is required
+  params.merge!({:response_type => 'code'})
+  connection.build_url(path, params).to_s
+end
+</code></pre>
+
+h2. 4. Todos
 
