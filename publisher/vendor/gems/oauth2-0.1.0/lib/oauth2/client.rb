@@ -52,10 +52,7 @@ module OAuth2
     end
 
     def access_token_url(params = {})
-      # path = options[:access_token_url] || options[:access_token_path] || "/oauth/access_token"
-      # according to http://tools.ietf.org/html/draft-ietf-oauth-v2-05#section-3.3.1
-      # it should be "/oauth/token" instead of "/oauth/access_token"
-      path = options[:access_token_url] || options[:access_token_path] || "/oauth/token"
+      path = options[:access_token_url] || options[:access_token_path] || "/oauth/access_token"
       # according to http://tools.ietf.org/html/draft-ietf-oauth-v2-09#section-4.1.1
       # :grant_type is required and should be set to authorization-code
       params.merge!({:grant_type => "authorization-code"})
