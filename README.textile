@@ -30,8 +30,8 @@ rack-oauth2-server: "https://github.com/flowtown/rack-oauth2-server":https://git
 h4. client:
 
 OAuth2                    "https://github.com/intridea/oauth2":https://github.com/intridea/oauth2
-devise_oauth2_facebook    "https://github.com/mooktakim/devise_oauth2_facebook":https://github.com/intridea/oauth2
-authlogic_oauth2          "https://github.com/andyhite/authlogic_oauth2":https://github.com/intridea/oauth2
+devise_oauth2_facebook    "https://github.com/mooktakim/devise_oauth2_facebook":https://github.com/mooktakim/devise_oauth2_facebook
+authlogic_oauth2          "https://github.com/andyhite/authlogic_oauth2":https://github.com/andyhite/authlogic_oauth2
 
 considering the stability and activity, we choose the "oauth2_provider" plugin for provider app and "oauth2" for client app.
 
