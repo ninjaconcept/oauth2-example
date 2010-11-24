@@ -1,0 +1,18 @@
+<% unless @articles.empty? %>
+  <table border="0" cellspacing="5" cellpadding="5">
+    <tr>
+      <th>title</th>
+      <th>author</th>
+      <th>content</th>
+      <th>created at</th>
+    </tr>
+    <% for article in @articles %>
+      <tr>
+        <td><%= article['article']['name'] %></td>
+        <td><%= article['article']['author_name'] %></td>
+        <td><%= article['article']['content'] %></td>
+        <td><%= article['article']['created_at'] %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

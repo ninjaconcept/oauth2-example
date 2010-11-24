@@ -9,5 +9,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :user_sessions
   map.resources :users
   
+  map.blog_artiles 'blog/articles', :controller => 'oauth', :action => 'get_articles'
+  
   map.root :controller => 'home'
 end

@@ -9,6 +9,7 @@
   <body>
     <div id="container">
       <div id="user_nav">
+        <%= link_to "Home", root_path %> | 
         <% if current_user %>
           <%= link_to "Edit Profile", edit_user_path(:current) %> |
           <%= link_to "Logout", logout_path %>

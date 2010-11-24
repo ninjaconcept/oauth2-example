@@ -1,19 +1,24 @@
 class OauthController < ApplicationController
+  before_filter :login_required
+  
+  # get authorization code
   def start
-    redirect_to client.web_server.authorize_url(
-      :redirect_uri => oauth_callback_url
-    )
+    redirect_to client.web_server.authorize_url(:redirect_uri => oauth_callback_url)
   end
 
+  # get access_token and save it
   def callback
-    access_token = client.web_server.get_access_token(
-      params[:code], :redirect_uri => oauth_callback_url
-    )
-
-    @data = access_token.get('/articles.xml')
-    # in reality you would at this point store the access_token.token value as well as 
-    # any user info you wanted
-    # render :json => json_data
+    access_token = client.web_server.get_access_token(params[:code], :redirect_uri => oauth_callback_url)
+    
+    current_user.update_attribute(:oauth2_token, access_token.token)
+    flash[:notice] = "Authorized successfully!"
+    
+    redirect_to root_url
+  end
+  
+  # get resources with access_token
+  def get_articles
+    @articles = ActiveSupport::JSON.decode(access_token.get('/articles.json'))
   end
 
   protected
@@ -26,4 +31,9 @@ class OauthController < ApplicationController
       :access_token_url => '/oauth/token'
     )
   end
+  
+  def access_token
+    @access_token ||= OAuth2::AccessToken.new(client, current_user.oauth2_token)
+  end
+    
 end
