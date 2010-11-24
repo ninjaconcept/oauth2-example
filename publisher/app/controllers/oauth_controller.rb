@@ -25,8 +25,8 @@ class OauthController < ApplicationController
 
   def client
     @client ||= OAuth2::Client.new(
-      'a12f32463bbd8d0bff944c5225c01fdc118ca1928cf5892ab46b11b4640935cf',  # client_id
-      '46a4de0ea4a0a6c7a805717247170c82172e0668f72e6b23fb335fbafdb72cd3',  # client_secret
+      '0a45ed6686c63580bf8fc44d54783db8a2659881ab4ad05ca4007578bfba414c',  # client_id
+      'daaaad1d6437ca12a7d0a1ed30bc4d69f98050ad605d56855a01c8b0334fdea0',  # client_secret
       :site => 'http://localhost:3000',
       :access_token_url => '/oauth/token'
     )

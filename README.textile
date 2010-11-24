@@ -48,9 +48,10 @@ It also provide a UI to checkout registered clients.
 
 here are the steps for setting up the provider app
 
+# rake db:create
+# rake db:seed
 # start the application with ./script/server
-# register a user with admin/123456
-# create several articles
+# login with blogger/123456 create several articles
 # click the "Clients" link on the top right
 # create a client app and name it "publisher", with Redirect uri: "http://localhost:4000/oauth/callback"
 # when done, copy the Client id and Client secret for later use.
@@ -62,11 +63,13 @@ The publisher app is a client app, you can config the oauth2 authentication info
 here are the steps for setting up the client app:
 
 # go to the app/controllers/oauth_controller.rb, and replace the client_id and client_secret with the pair you got in setting up provider app
+# rake db:create
+# rake db:seed
 # start server with ./script/server -p 4000
-# click the "get articles!" link
-# when ask for login, login with you username/password on the Blog app
+# click the "get articles!" link and login with publisher/123456
+# when redirected to Blog app and asked for login, login with blogger/123456 on the Blog app
 # make sure check the checkbox and click submit when ask for permission.
-# then you should see the data returned from the provider app
+# then you should see the articles returned from the provider app
 
 h2. 3. Setting up for new project
 
@@ -107,6 +110,3 @@ def authorize_url(params = { :response_type => 'code' })
   connection.build_url(path, params).to_s
 end
 </code></pre>
-
-h2. 4. Todos
-
